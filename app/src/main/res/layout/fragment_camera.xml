@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Aquí irá la vista previa de la cámara en el futuro -->
+    <TextView
+        android:id="@+id/tv_camera_placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vista de cámara (próximamente)"
+        android:layout_gravity="center" />
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btn_capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Capturar"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="32dp" />
+
+</FrameLayout>
