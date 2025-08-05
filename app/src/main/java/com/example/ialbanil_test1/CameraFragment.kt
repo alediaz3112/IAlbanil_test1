@@ -14,6 +14,7 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
 import android.widget.Toast
+import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -61,9 +62,7 @@ class CameraFragment : Fragment() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder().build().also {
-                it.setSurfaceProvider(binding.previewView.surfaceProvider)
-            }
+            val preview: Preview = Preview.Builder().build().also { it.setSurfaceProvider(binding.previewView.surfaceProvider) }
             imageCapture = ImageCapture.Builder().build()
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
             try {
@@ -84,7 +83,7 @@ class CameraFragment : Fragment() {
 
     private fun analyzeImage(bitmap: Bitmap) {
         val image = InputImage.fromBitmap(bitmap, 0)
-        val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT)
+        val labeler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS)
         labeler.process(image)
             .addOnSuccessListener { labels ->
                 val suggestions = labels.map { label ->
